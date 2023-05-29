@@ -13,111 +13,65 @@
     <header>
         <h1>Phone Store</h1>
     </header>
+<!-- Tabla - Productos del Carrito -->
     <section class="contenedor">
-        <!-- Contenedor de elementos -->
-        <div class="contenedor-items">
-            <div class="item">
-                <span class="titulo-item">Iphone 15</span>
-                <img src="img/Iphone15.png" alt="" class="img-item">
-                <span class="precio-item">$6.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Iphone 15 Pro Max</span>
-                <img src="img/iPhone15pro.png" alt="" class="img-item">
-                <span class="precio-item">$7.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Xiaomi 13 Pro</span>
-                <img src="img/Xiaomi13Pro.png" alt="" class="img-item">
-                <span class="precio-item">$3.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Xiaomi 13 Ultra</span>
-                <img src="img/Xioami13Ultra.png" alt="" class="img-item">
-                <span class="precio-item">$2.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Samsung a21s</span>
-                <img src="img/SamA21s.png" alt="" class="img-item">
-                <span class="precio-item">$800.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Samnsung S23</span>
-                <img src="img/SamS23.png" alt="" class="img-item">
-                <span class="precio-item">$4.600.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Huawei P60 Pro </span>
-                <img src="img/Haweip60.png" alt="" class="img-item">
-                <span class="precio-item">$4.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Huawei Nova 10 SE</span>
-                <img src="img/Nova10SE.png" alt="" class="img-item">
-                <span class="precio-item">$1.800.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
-            <div class="item">
-                <span class="titulo-item">Vivo V 25 Pro</span>
-                <img src="img/VivoV25.png" alt="" class="img-item">
-                <span class="precio-item">$3.000.000</span>
-                <button class="boton-item">Agregar al Carrito</button>
-            </div>
+        <div class="tabla-calculo" id="tabla-calculo">
+            <table class="tabla">
+            <caption class="titulo-tabla">Carrito de compras</caption>
+            <thead class="cabecera border-top-right">
+                <tr>
+                <th class="border-top-left">Nombre Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th class="border-top-right">Precio Total</th>
+                </tr>
+            </thead>
+            <tbody id="carrito-body">
+        
+            </tbody>
+            <tfoot id="footer">
+                <tr><td class="border-bottom-left border-bottom-right" colspan = 4>¡No hay ningun elemento en el carrito!</td></tr>
+            </tfoot>
+            </table>
         </div>
-        <!-- Carrito de Compras -->
-        <div class="carrito">
-            <div class="header-carrito">
-                <h2>Carrito de Compras</h2>
-            </div>
-
-            <div class="carrito-items">
-                
-                <div class="carrito-item">
-                    <img src="img/Iphone15.png" alt="" width="80px">
-                   <div class="carrito-item-detalles">
-                    <span class="carrito-item-titulo">Iphone 15 </span>
-                    <div class="selector-cantidad">
-                    <i class="fa-solid fa-minus restar-cantidad"></i>
-                    <input type="text" value="1" class="carrito-item-cantidad" disabled>
-                    <i class="fa-solid fa-plus sumar-cantidad"></i>
-                </div>
-                 <span class="carrito-item-precio">$6.000.000</span>
-                </div>
-                <span class="btn-eliminar">
-                <i class="fa-solid fa-trash"></i>
-            </span>
-            </div>
-            <div class="carrito-item">
-                <img src="img/iPhone15pro.png" alt="" width="80px">
-               <div class="carrito-item-detalles">
-                <span class="carrito-item-titulo">Iphone 15 Pro </span>
-                <div class="selector-cantidad">
-                <i class="fa-solid fa-minus restar-cantidad"></i>
-                <input type="text" value="2" class="carrito-item-cantidad" disabled>
-                <i class="fa-solid fa-plus sumar-cantidad"></i>
-            </div>
-             <span class="carrito-item-precio">$7.000.000</span>
-            </div>
-            <span class="btn-eliminar">
-            <i class="fa-solid fa-trash"></i>
-        </span>
-        </div>
-        <div class="carrito-total">
-            <div class="fila">
-                <strong>Tu Total</strong>
-                <span class="carrito-precio-total">
-                    $20.000.000.00
-                </span>
+        <template id="agregar-producto-al-carro">
+            <tr>
+                <td id="producto">Papas Fritas</td>
+                <td><button id="menos-cantidad" class="button">-</button><span id="cant">1</span><button id='mas-cantidad' class="button">+</button></td>
+                <td class="precio-tabla" id="precio-uni">3.50</td>
+                <td class="precio-tabla" id="precio-total-prod">3.50</td>
+                </tr>
+        </template>
+        <!-- Template del footer de la tabla -->
+        <template id="tfooter">
+            <tr class="none">
+            <td colspan = 2 class="border-bottom-left"><a id="vaciar-tabla" >Vaciar carrito</a> <button id="pagar-carro" class="button btn-pagar">Pagar<i class="fa-solid fa-bag-shopping"></i></button></td>
+            <td class="negrita">Precio Total</td>
+            <td id="total-a-pagar" class="precio-tabla border-bottom-right negrita">5.00</td>
+            </tr>
+        </template>
+        <!-- template del producto -->
+    <template id="template-prod">
+    <article class="cartola">
+    <!-- Imagen del producto -->
+    <div class="contenedor-img">
+        <img src="" alt="">
     </div>
-    <button class="btn-pagar">pagar <i class="fa-solid fa-bag-shopping"></i></button>
+    <!-- Nombre y descripción del producto -->
+    <div class="div-info">
+        <h2 class="nombre-prod">Nombre Producto</h2>
+    </div>
+    <!-- Precio y Agregar al carrito -->
+    <div class="div-precio-boton">
+        <p class="precio">precio Producto</p>
+        <button class="boton">Agregar</button>
+    </div>
+    </article>
+    </template>
 
-        </section>
-    </body>
-    </html>
+    </section>
+    <div class="contenedor-productos">
+    
+    </div>
+</body>
+</html>

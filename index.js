@@ -1,64 +1,186 @@
-//Variable que mantiene el estado visible del carrito
-var carritoVisible = false;
-
-//Espermos que todos los elementos de la pàgina cargen para ejecutar el script
-if(document.readyState == 'loading'){
-    document.addEventListener('DOMContentLoaded', ready)
-}else{
-    ready();
-}
-
-function ready(){
-     //Agregremos funcionalidad a los botones eliminar del carrito
-     var botonesEliminarItem = document.getElementsByClassName('btn-eliminar');
-     for(var i=0;i<botonesEliminarItem.length; i++){
-         var button = botonesEliminarItem[i];
-         button.addEventListener('click',eliminarItemCarrito);
-     }
+// Array de productos
+let productos = [
+    {
+        nombre: "Iphone 15",
+        srcImg: "img/Iphone15.png",
+        precio: 6000000
+    },
+    {
+        nombre: "Iphone 15 Pro Max",
+        srcImg: "img/iPhone15pro.png",
+        precio: 7000000
+    },
+    {
+        nombre: "Xiaomi 13 Pro",
+        srcImg: "img/Xiaomi13Pro.png",
+        precio: 3000000
+    },
+    {
+        nombre: "Xiaomi 13 Ultra",
+        srcImg: "img/Xioami13Ultra.png",
+        precio: 2000000
+    },
+    {
+        nombre: "Samsung a21s",
+        srcImg: "img/SamA21s.png",
+        precio: 800000
+    },
+    {
+        nombre: "Huawei P60 Pro",
+        srcImg: "img/SamS23.png",
+        precio: 4000000
+    },
+    {
+        nombre: "Huawei Nova 10 SE",
+        srcImg: "img/Haweip60.png",
+        precio: 1800000
+    },
+    {
+        nombre: "Vivo V 25 Pro",
+        srcImg: 'img/VivoV25.png',
+        precio: 3000000
+    },
+]
+const xys = {
+    producto1: {
+      nombre: 'Papas fritas',
+      precio: '3.50',
+      descripcion: 'Papas frescas preparadas en el momento, caseras, seleccionadas exclusivamente para tener una buena calidad y con un sabor inigualable.',
+      srcImg: 'https://i.blogs.es/f9cf25/degustacion-patatas/450_1000.jpg'
+    },
+    producto2: {
+      nombre: 'Hamburguesa',
+      precio: '10.00',
+      descripcion: 'La mejor Hamburguesa del mercado, con productos finamente seleccionados, una presentación única y el mejor sabor.',
+      srcImg: 'https://cocina-casera.com/wp-content/uploads/2016/11/hamburguesa-queso-receta.jpg'
+    },
+    producto3: {
+      nombre: 'Pizza',
+      precio: '15.50',
+      descripcion: 'Masa preparada en el local, fermentada el tiempo suficiente para que de una mordida puedas sentir una sensación única de sabor y textura.',
+      srcImg: 'https://elgourmet.s3.amazonaws.com/recetas/share/pizza_Mh3H4eanyBKEsStv1YclPWTf9OUqIi.png'
+    },
+    producto4: {
+      nombre: 'Completo',
+      precio: '8.50',
+      descripcion: 'Estos son los mejores completos de la ciudad, hechos con el mejor pan y ingredientes finamente seleccionados.',
+      srcImg: 'https://i2.wp.com/golososdelmundo.com/wp-content/uploads/2018/08/completo-italiano3.jpg?fit=1024%2C683'
     }
-
-    //Elimino el item seleccionado del carrito
-    function eliminarItemCarrito(event){
-        var buttonClicked = event.target;
-        buttonClicked.parentElement.parentElement.remove();
-       
-    }
-    //Funciòn que controla si hay elementos en el carrito. Si no hay oculto el carrito.
-function ocultarCarrito(){
-}
-
-    //Actualizamos el total de Carrito
-function actualizarTotalCarrito(){
-    //seleccionamos el contenedor carrito
-    var carritoContenedor = document.getElementsByClassName('carrito')[0];
-    var carritoItems = carritoContenedor.getElementsByClassName('carrito-item');
-    var total = 0;
-    //recorremos cada elemento del carrito para actualizar el total
-    for(var i=0; i< carritoItems.length;i++){
-        var item = carritoItems[i];
-        var precioElemento = item.getElementsByClassName('carrito-item-precio')[0];
-        //quitamos el simobolo peso y el punto de milesimos.
-        var precio = parseFloat(precioElemento.innerText.replace('$','').replace('.',''));
-        var cantidadItem = item.getElementsByClassName('carrito-item-cantidad')[0];
-        console.log(precio);
-        var cantidad = cantidadItem.value;
-        total = total + (precio * cantidad);
-    }
-    total = Math.round(total * 100)/100;
-
-    document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+total.toLocaleString("es") + ",00";
-}
-
-function ocultarCarrito(){
-    var carritoItems = document.getElementsByClassName('carrito-items')[0];
-    if(carritoItems.childElementCount==0){
-        var carrito = document.getElementsByClassName('carrito')[0];
-        carrito.style.marginRight = '-100%';
-        carrito.style.opacity = '0';
-        carritoVisible = false;
+  }
+  // Se captura el template de los productos
+  const templateProd = document.getElementById('template-prod').content
+  const contenedorProd = document.querySelector('.contenedor-productos')
+  const fragment = document.createDocumentFragment()
+  
+  
+  // TODO LO RELACIONADO A AGREGAR LOS PRODUCTOS AL DOM
+  Object.values(productos).forEach( producto => {
+    templateProd.querySelector('.div-info .nombre-prod').textContent = producto.nombre
+    templateProd.querySelector('.div-precio-boton .precio').textContent = producto.precio
+    templateProd.querySelector('.contenedor-img img').setAttribute('alt', producto.nombre)
+    templateProd.querySelector('.contenedor-img img').setAttribute('src', producto.srcImg)
+    const clone = templateProd.cloneNode(true)
+    fragment.appendChild(clone)
+  })
+  contenedorProd.appendChild(fragment)
+  
+  // TODO LO RELACIONADO AL CARRITO DE COMPRA
+  let carrito = {}
+  const templateTabla = document.getElementById('agregar-producto-al-carro').content
+  const tbodyCarrito = document.getElementById('carrito-body')
+  const fragmentTabla = document.createDocumentFragment()
+  const templateFoot = document.getElementById('tfooter').content
+  const tfootCarrito = document.getElementById('footer')
+  
+  contenedorProd.addEventListener('click', e => {
     
-        var items =document.getElementsByClassName('contenedor-items')[0];
-        items.style.width = '100%';
+    if(e.target.textContent === "Agregar") {
+      setCarrito(e.target.parentElement.parentElement)
     }
-    var items= document.get
-}
+    e.stopPropagation();
+  })
+  const setCarrito = e => {
+    const pivoteCarrito = {
+      nombre: e.querySelector('.div-info .nombre-prod').textContent,
+      precio: e.querySelector('.div-precio-boton .precio').textContent,
+      cantidad: 1
+    }
+    if(carrito.hasOwnProperty(pivoteCarrito.nombre)){
+      carrito[pivoteCarrito.nombre].cantidad += 1
+    } else {
+      carrito[pivoteCarrito.nombre] = {...pivoteCarrito}
+    }
+    pintarTabla(carrito)
+  }
+  
+  const pintarTabla = objetoCarrito => {
+    Object.values(objetoCarrito).forEach( objeto => {
+      const cloneTabla = templateTabla.cloneNode(true)
+      cloneTabla.getElementById('producto').textContent = objeto.nombre
+      cloneTabla.getElementById('cant').textContent = objeto.cantidad
+      cloneTabla.getElementById('precio-uni').textContent = objeto.precio
+      let precioTotal = parseFloat(objeto.precio) * objeto.cantidad
+      cloneTabla.getElementById('precio-total-prod').textContent = (precioTotal.toFixed(2)).toLocaleString('en-US');
+      fragmentTabla.appendChild(cloneTabla)
+    })
+    tbodyCarrito.innerHTML = ''
+    tbodyCarrito.appendChild(fragmentTabla)
+    pintarFooter()
+  }
+  const pintarFooter = () => {
+    tfootCarrito.innerHTML = ''
+    if(Object.keys(carrito).length === 0) {
+      tfootCarrito.innerHTML = '<tr><td colspan = 4>¡No hay ningun elemento en el carrito!</td></tr>'
+    } else {
+      const total = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + (cantidad * precio),0)
+      templateFoot.getElementById('total-a-pagar').textContent = total.toFixed(2)
+      const cloneFoot = templateFoot.cloneNode(true)
+      fragment.appendChild(cloneFoot)
+      tfootCarrito.appendChild(fragment)
+      //Boton Vaciar carrito
+      const botonVaciar = document.getElementById('vaciar-tabla')
+      const pagarCArro = document.getElementById('pagar-carro')
+      botonVaciar.addEventListener('click', () => {
+        carrito = {}
+        pintarTabla(carrito)
+        pintarFooter()
+      })
+      pagarCArro.addEventListener('click', () => {
+        carrito = {}
+        templateFoot.getElementById('total-a-pagar').textContent = "Pago"
+        pintarTabla(carrito)
+        pintarFooter()
+      })
+      //Botones aumentar y disminuir cantidades
+      
+    }
+  }
+  tbodyCarrito.addEventListener('click', e => {
+    
+    if(e.target.classList.contains('button')) {
+      aumentarDisminuir(e.target)
+    }
+  })
+  const aumentarDisminuir = boton => {
+    if(boton.textContent === '+'){
+      const indicador = boton.parentElement.parentElement.firstElementChild.textContent
+      Object.values(carrito).forEach( elemento => {
+        if(elemento.nombre === indicador) {
+        carrito[elemento.nombre].cantidad++  
+        }
+      })
+    }
+    if(boton.textContent === '-') {
+      const indicador = boton.parentElement.parentElement.firstElementChild.textContent
+      Object.values(carrito).forEach( elemento => {
+        if(elemento.nombre === indicador) {
+        carrito[elemento.nombre].cantidad--
+          if(carrito[elemento.nombre].cantidad === 0) {
+            delete carrito[elemento.nombre]
+          }
+        }
+      })
+    }
+    pintarTabla(carrito)
+    pintarFooter()
+  }
