@@ -1,0 +1,42 @@
+[
+    {
+       "nombre": "Iphone 15",
+       "srcImg": "img/Iphone15.png",
+       "precio": 6000000
+    },
+    {
+       "nombre": "Iphone 15 Pro Max",
+       "srcImg": "img/iPhone15pro.png",
+       "precio": 7000000
+    },
+    {
+       "nombre": "Xiaomi 13 Pro",
+       "srcImg": "img/Xiaomi13Pro.png",
+       "precio": 3000000
+    },
+    {
+       "nombre": "Xiaomi 13 Ultra",
+       "srcImg": "img/Xioami13Ultra.png",
+       "precio": 2000000
+    },
+    {
+       "nombre": "Samsung a21s",
+       "srcImg": "img/SamA21s.png",
+       "precio": 800000
+    },
+    {
+       "nombre": "Huawei P60 Pro",
+       "srcImg": "img/SamS23.png",
+       "precio": 4000000
+    },
+    {
+       "nombre": "Huawei Nova 10 SE",
+       "srcImg": "img/Haweip60.png",
+       "precio": 1800000
+    },
+    {
+       "nombre": "Vivo V 25 Pro",
+       "srcImg": "img/VivoV25.png",
+       "precio": 3000000
+    }
+ ]
