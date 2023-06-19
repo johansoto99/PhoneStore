@@ -1,0 +1,114 @@
+{
+  "data": {
+    "products": [
+      {
+        "availableSizes": ["X", "L", "XL", "XXL"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "14/15 s/nº",
+        "id": 0,
+        "installments": 9,
+        "isFreeShipping": true,
+        "price": 60.9,
+        "sku": 8552515751438644,
+        "title": "Iphone 15"
+      },
+      {
+        "availableSizes": ["X", "ML", "L"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "",
+        "id": 11,
+        "installments": 3,
+        "isFreeShipping": true,
+        "price": 70.25,
+        "sku": 39876704341265610,
+        "title": "Iphone 15 Pro Max"
+      },
+      {
+        "availableSizes": ["XL"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "14/15 s/nº - Jogador",
+        "id": 4,
+        "installments": 12,
+        "isFreeShipping": false,
+        "price": 25.9,
+        "sku": 9197907543445676,
+        "title": "Xiaomi 13 Pro"
+      },
+      {
+        "availableSizes": ["M", "ML"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "",
+        "id": 13,
+        "installments": 5,
+        "isFreeShipping": true,
+        "price": 29.45,
+        "sku": 51498472915966370,
+        "title": "Xiaomi 13 Pro"
+      },
+      {
+        "availableSizes": ["S", "XS"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "4 MSL",
+        "id": 12,
+        "installments": 9,
+        "isFreeShipping": true,
+        "price": 10.9,
+        "sku": 12064273040195392,
+        "title": "Samsung a21s"
+      },
+      {
+        "availableSizes": ["X", "L", "XL"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "GPX Poly 1",
+        "id": 14,
+        "installments": 3,
+        "isFreeShipping": true,
+        "price": 90,
+        "sku": 10686354557628304,
+        "title": "Huawei P60 Pro"
+      },
+      {
+        "availableSizes": ["X", "L", "XL", "XXL"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "Treino 2014",
+        "id": 15,
+        "installments": 5,
+        "isFreeShipping": true,
+        "price": 14,
+        "sku": 11033926921508488,
+        "title": "Huawei Nova 10 SE"
+      },
+      {
+        "availableSizes": ["X", "L", "XL", "XXL"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "14/15 s/nº",
+        "id": 1,
+        "installments": 9,
+        "isFreeShipping": true,
+        "price": 10.9,
+        "sku": 18644119330491310,
+        "title": "Xiaomi 13 Ultra"
+      },
+      {
+        "availableSizes": ["X", "L"],
+        "currencyFormat": "$",
+        "currencyId": "USD",
+        "description": "14/15 s/nº",
+        "id": 2,
+        "installments": 7,
+        "isFreeShipping": true,
+        "price": 14.9,
+        "sku": 11854078013954528,
+        "title": "Vivo V 25 Pro"
+      }
+    ]
+  }
+}
